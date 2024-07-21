@@ -1,15 +1,9 @@
-All: miles2kilometers CToF InchesToFt
-LIB=libConversions.s
+All: calculateKPH
+LIB=libConversions.o
 CC=gcc
 
-miles2kilometers: miles2kilometers.o $(LIB)
-	$(CC) $@.0 $(LIB) -g -o $@
-
-CToF: CToF.o $(LIB)
-	$(CC) $@.0 $(LIB) -g -o $@
-
-InchesToFt: InchesToFt.o $(LIB)
-	$(CC) $@.0 $(LIB) -g -o $@
+calculateKPH: calculateKPH.o $(LIB)
+	$(CC) $@.o $(LIB) -g -o $@
 
 .s.o:
-	$(CC) $(@:.0=.s) -g -c -o $@
+	$(CC) $(@:.o=.s) -g -c -o $@
