@@ -3,6 +3,7 @@
 .global kph
 .global cToF
 .global inchesToFeet
+.global inchesToFeetDecimal
 
 .text
 miles2Kilometers:
@@ -106,3 +107,28 @@ inchesToFeet:
 .data
 
 #END inchesToFeet
+
+.text
+inchesToFeetDecimal:
+
+    #push the stack
+    SUB sp, sp, #4
+    STR lr, [sp]
+
+    #calculate decimal value
+    MOV r2, #12                 //r2 = 12
+    MUL r0, r0, r2              //r0 = feet value * 12
+    SUB r0, r1, r0              //r0 = intial inches - feet in inches
+    MOV r1, #12                 //r1 = 12
+    MOV r3, #10                 //r3 = 10
+    MUL r0, r0, r3              //r0 = remaining inches * 10
+    BL __aeabi_idiv             //r0 = (remaining inches * 10)  / 12
+
+    #pop the stack
+    LDR lr, [sp, #0]
+    ADD sp, sp, #4
+    MOV pc, lr
+
+.data
+
+#END inchesToFeetDecimal

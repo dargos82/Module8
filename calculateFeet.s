@@ -31,19 +31,14 @@ main:
     MOV r4, r0                  //r4 = feet value
 
     #calculate decimal
-    MOV r2, #12                 //r2 = 12
-    MUL r0, r0, r2              //r0 = feet value * 12
-    LDR r1, =inchesValue        //r1 = initial inches value
+    LDR r1, =inchesValue
     LDR r1, [r1]
-    SUB r0, r1, r0              //r0 = intial inches - feet in inches
-    MOV r1, #12                 //r1 = 12
-    MOV r3, #10                 //r3 = 10
-    MUL r0, r0, r3              //r0 = remaining inches * 10
-    BL __aeabi_idiv             //r0 = (remaining inches * 10)  / 12
+    BL inchesToFeetDecimal
+    MOV r5, r0
 
     #print output
     MOV r1, r4                  //move feet value from r4 to r1 for printing
-    MOV r2, r0                  //move decimal value from r0 to r2 for printing
+    MOV r2, r5                  //move decimal value from r5 to r2 for printing
     LDR r0, =output1
     BL printf
     
