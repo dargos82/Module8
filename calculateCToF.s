@@ -2,8 +2,8 @@
 #Author: David Blossom
 #Date: 21 July 2024
 #Purpose: Convert Celsius to Fahrenheit using branching
-#Input: milesValue - integer value for miles; hoursValue - integer value for hours
-#Output: output1 - string with kph calculation
+#Input: celsiusValue - integer value for Celsius
+#Output: output1 - string with Fahrenheit calculation
 
 .text
 .global main
@@ -27,7 +27,7 @@ main:
     LDR r0, [r0]                //r0 has Celsius integer
 
     #convert to Fahrenheit
-    BL CToF                     //r0 now has Fahrenheit
+    BL cToF                     //r0 now has Fahrenheit
 
     #print output
     MOV r1, r0                  //move Fahrenheit integer from r0 to r1 for printing

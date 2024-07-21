@@ -1,8 +1,8 @@
 
 .global miles2Kilometers
 .global kph
-.global CToF
-.global InchesToFt
+.global cToF
+.global inchesToFeet
 
 .text
 miles2Kilometers:
@@ -50,7 +50,7 @@ kph:
 #END kph
 
 .text
-CToF:
+cToF:
 
     #push stack
     SUB sp, sp, #4
@@ -83,16 +83,18 @@ CToF:
 
 .data
 
-#END CToF
+#END cToF
 
 .text
-InchesToFt:
+inchesToFeet:
 
     #push stack
     SUB sp, sp, #4
     STR lr, [sp]
     
     #Convert inches to feet
+    MOV r1, #12
+    BL __aeabi_idiv
     
     #pop stack
     LDR lr, [sp]
@@ -101,4 +103,4 @@ InchesToFt:
 
 .data
 
-#END InchesToFt
+#END inchesToFeet
