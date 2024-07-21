@@ -13,8 +13,10 @@ miles2Kilometers:
     
     #Convert miles to kilometers
     MOV r1, #161                //the actual conversion factor for miles to km is a decimal
-                                //cannot use decimal as an immediate, therefore use a factor of 
-                                //100 to convert decimal to an integer 
+                                //cannot use decimal as an immediate, therefore we must 
+                                //use a factor of 100 to convert decimal to an integer. Precision
+                                //could be improved by calculating the remainder/decimal value for 
+                                //each factor of ten (i.e. tenths, hundredths, etc.) 
     MUL r0, r0, r1
 
     MOV r1, #100
